@@ -1,25 +1,58 @@
-var hangman;
 
-function Hangman() {
-this.words=["perro","gato","hamster","flor","arbol","raton"];//array con palabras aleatorias mínimo 3
-this.secretWord='';//palabra elegida al azar
+function Client(game) {
+  this.game = game;
+
+//Ingredientes pan 1,carne 2, queso 3, lechuga 4
+
+this.burgers=[];
+
+this.createBurgerMenu();
+
+this.max_ingridientes;
+
+this.selectedBurger=[];
+
+
+//array con palabras aleatorias mínimo 3
+/*this.secretWord='';//palabra elegida al azar
 this.letters=[];//array de teclas pulsadas por el usuario
 this.guessedLetter='';//cadena con las letras acertadas. La usaremos para ver si hemos ganado
-this.errorsLeft=10;//max de errores
+this.errorsLeft=10;//max de errores*/
  }
 
- Hangman.prototype.getWord = function () {
 
-var min=0;
-var max=this.words.length;
-var aleatorio= Math.floor(Math.random() * (max - min) + min); 
-alert('a'+aleatorio);
-this.secretWord=this.words[aleatorio];
+ Client.prototype.createBurgerMenu = function () {
+  
+  this.burgers[0]= new Burger("tipo 0",[1,2,3,4,1],'images/burger0.png');
+  this.burgers[1]= new Burger("tipo 1",[1,2,2,3,1], 'images/burger1.png');
+  this.burgers[2]= new Burger("tipo 2",[1,2,1], 'images/burger2.png');
+  this.burgers[3]= new Burger("tipo 3",[1,4,4,4,1], 'images/burger3.png');
 
-return this.words[aleatorio];
+   };
+
+ Client.prototype.getBurger = function () {
+      alert('getBurger');
+      var min=0;
+      var max=this.burgers.length;
+      var aleatorio= Math.floor(Math.random() * (max - min) + min); 
+      alert('a'+aleatorio);
+      this.selectedBurger=this.burgers[aleatorio];
+
+      return this.burgers[aleatorio];
 
  };
 
+
+
+ Client.prototype.draw = function() {
+alert(this.selectedBurger.img.src);
+
+  this.game.ctx.drawImage(this.selectedBurger.img, 500, 100, 200, 300);
+
+
+};
+
+/*
  Hangman.prototype.checkIfLetter = function (keyCode) {
 
 
@@ -136,21 +169,10 @@ return this.checkGameOver();
 
  };
 
+*/
 
 
-document.getElementById('start-game-button').onclick = function () {
-  
-  //alert('hola');
-  
-  hangman = new Hangman();
-  hangman.getWord();
-  //alert(hangman.secretWord);
-  canvas.createBoard();
-  canvas.drawLines(hangman.secretWord.length);
-  
-};
-
-
+/*
 document.onkeydown = function (e) {
   var winner=false;
   var gameOver=false;
@@ -204,3 +226,4 @@ alert('llega');
      if(gameOver===true){alert('PERDISTE GASTASTE TU 10 INTENTOS');}
   
 };
+*/

@@ -81,7 +81,7 @@ HangmanCanvas.prototype.winner = function () {
 };
 
 
-canvas = new HangmanCanvas();
+//canvas = new HangmanCanvas();
 
 
 //Every time a user clicks the keyboard, after checking if
